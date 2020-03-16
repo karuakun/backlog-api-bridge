@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BacklogApiBridge
+namespace BacklogApiBridge.WebApp
 {
     public class Startup
     {
@@ -48,7 +48,8 @@ namespace BacklogApiBridge
             });
 
             services.AddControllers(options =>
-                options.Filters.Add(new BacklogApiErrorHandlingFilter()));
+                options.Filters.Add(new BacklogApiErrorHandlingFilter()))
+                .AddApplicationPart(typeof(Controllers.IssueController).Assembly);
 
             services.AddSwaggerDocument(config =>
             {
@@ -77,6 +78,7 @@ namespace BacklogApiBridge
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

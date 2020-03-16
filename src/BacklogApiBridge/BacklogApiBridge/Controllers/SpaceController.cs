@@ -8,7 +8,6 @@ using BacklogApiBridge.Backlog;
 using BacklogApiBridge.Backlog.Models;
 using BacklogApiBridge.Extensions;
 using BacklogApiBridge.Filters;
-using BacklogApiBridge.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BacklogApiBridge.Controllers
