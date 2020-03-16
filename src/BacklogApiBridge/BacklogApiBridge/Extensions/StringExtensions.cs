@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BacklogApiBridge.Helpers
+namespace BacklogApiBridge.Extensions
 {
     public static class StringExtensions
     {

@@ -3,12 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BacklogApiBridge", "BacklogApiBridge\BacklogApiBridge.csproj", "{25F7F114-5B77-4661-BF2F-04E83A2ACAE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BacklogApiBridge.WebApp", "BacklogApiBridge.WebApp\BacklogApiBridge.WebApp.csproj", "{25F7F114-5B77-4661-BF2F-04E83A2ACAE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{03499228-A70A-45BA-867B-FC48E2A48976}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BacklogApiBridge.AwsLambda", "BacklogApiBridge.AwsLambda\BacklogApiBridge.AwsLambda.csproj", "{F0AFF7B7-6C43-491E-BD11-59FCC669FA28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BacklogApiBridge", "BacklogApiBridge\BacklogApiBridge.csproj", "{4F38FC2B-016C-43C8-AAE5-55FE855ED996}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +24,14 @@ Global
 		{25F7F114-5B77-4661-BF2F-04E83A2ACAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25F7F114-5B77-4661-BF2F-04E83A2ACAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25F7F114-5B77-4661-BF2F-04E83A2ACAE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0AFF7B7-6C43-491E-BD11-59FCC669FA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0AFF7B7-6C43-491E-BD11-59FCC669FA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0AFF7B7-6C43-491E-BD11-59FCC669FA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0AFF7B7-6C43-491E-BD11-59FCC669FA28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F38FC2B-016C-43C8-AAE5-55FE855ED996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F38FC2B-016C-43C8-AAE5-55FE855ED996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F38FC2B-016C-43C8-AAE5-55FE855ED996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F38FC2B-016C-43C8-AAE5-55FE855ED996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
