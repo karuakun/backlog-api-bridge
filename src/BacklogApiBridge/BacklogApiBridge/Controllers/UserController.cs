@@ -34,7 +34,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="apiKey">BacklogAPIを呼び出すためのAPIKey</param>
         /// <param name="spaceKey">組織キー https://xxxx.backlog.jp/ のxxxの部分</param>
         /// <returns></returns>
-        public async Task<User[]> GetUsers(
+        public async Task<ActionResult<User[]>> GetUsers(
             [Required] string apiKey,
             [Required] string spaceKey
         ) =>
@@ -50,7 +50,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="mailAddress"></param>
         /// <returns></returns>
         [Route("findByMailAddress")]
-        public async Task<User> FindUsersByMailAddress(
+        public async Task<ActionResult<User>> FindUsersByMailAddress(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string mailAddress)
@@ -68,7 +68,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="userId">ユーザーID</param>
         /// <returns></returns>
         [Route("{userId}")]
-        public async Task<User> GetUser(
+        public async Task<ActionResult<User>> GetUser(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] int userId

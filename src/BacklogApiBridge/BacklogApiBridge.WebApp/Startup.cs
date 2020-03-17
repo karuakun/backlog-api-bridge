@@ -51,7 +51,7 @@ namespace BacklogApiBridge.WebApp
                 options.Filters.Add(new BacklogApiErrorHandlingFilter()))
                 .AddApplicationPart(typeof(Controllers.IssueController).Assembly);
 
-            services.AddSwaggerDocument(config =>
+            services.AddOpenApiDocument(config =>
             {
                 config.PostProcess = document =>
                 {
@@ -77,8 +77,8 @@ namespace BacklogApiBridge.WebApp
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
+            app.UseReDoc();
 
-            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -173,5 +173,44 @@ namespace BacklogApiBridge.Backlog
             [Query] string webhookId
         );
         #endregion
+
+        #region GitPullRequest
+        [Post("/api/v2/projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests")]
+        Task<PullRequest> CreatePullRequestAsync(
+            [Query] string apiKey,
+            [Query] string projectIdOrKey,
+            [Query] string repoIdOrName,
+            [Query] string summary,
+            [Query] string description,
+            [Query] string @base,
+            [Query] string branch,
+            [Query] int? issueId,
+            [Query] int? assigneeId,
+            [AliasAs("notifiedUserId[]")][Query(CollectionFormat.Multi)] int[] notifiedUserId,
+            [AliasAs("attachmentId[]")][Query(CollectionFormat.Multi)] int[] attachmentId
+        );
+
+        [Get("/api/v2/projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/{number}")]
+        Task<PullRequest> GetPullRequestAsync(
+            [Query] string apiKey,
+            [Query] string projectIdOrKey,
+            [Query] string repoIdOrName,
+            [Query] int number
+        );
+
+        [Patch("/api/v2/projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/{number}")]
+        Task<PullRequest> UpdatePullRequestAsync(
+            [Query] string apiKey,
+            [Query] string projectIdOrKey,
+            [Query] string repoIdOrName,
+            [Query] int number,
+            [Query] string summary,
+            [Query] string description,
+            [Query] int? issueId,
+            [Query] int? assigneeId,
+            [AliasAs("notifiedUserId[]")][Query(CollectionFormat.Multi)] int[] notifiedUserId,
+            [Query] string comment = null
+        );
+        #endregion
     }
 }

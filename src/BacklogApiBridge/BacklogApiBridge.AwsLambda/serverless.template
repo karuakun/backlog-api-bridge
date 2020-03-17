@@ -23,7 +23,7 @@
 				"Policies": [ "AWSLambdaFullAccess" ],
 				"Environment" : {
 					"Variables" : {
-						"AllowBacklogSpaces__0": "[allow-space-name]"
+						"AllowBacklogSpaces__0": "e-reverse"
 					}
 				},
 				"Events": {

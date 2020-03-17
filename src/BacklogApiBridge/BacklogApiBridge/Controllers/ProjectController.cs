@@ -34,7 +34,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="apiKey">BacklogAPIを呼び出すためのAPIKey</param>
         /// <param name="spaceKey">組織キー https://xxxx.backlog.jp/ のxxxの部分</param>
         /// <returns></returns>
-        public async Task<Project[]> GetProjects(
+        public async Task<ActionResult<Project[]>> GetProjects(
             [Required] string apiKey,
             [Required] string spaceKey
         ) => 
@@ -50,7 +50,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}")]
-        public async Task<Project> GetProject(
+        public async Task<ActionResult<Project>> GetProject(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -94,7 +94,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="order">“asc”または”desc” 指定が無い場合は”desc”</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/activities")]
-        public async Task<Activity[]> GetActivities(
+        public async Task<ActionResult<Activity[]>> GetActivities(
             [Required] string apiKey,
             [Required] string spaceKey,
             string activityTypeIds = "[]",
@@ -121,7 +121,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/administrators")]
-        public async Task<User[]> GetAdministrators(
+        public async Task<ActionResult<User[]>> GetAdministrators(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -138,7 +138,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/statuses")]
-        public async Task<Status[]> GetStatuses(
+        public async Task<ActionResult<Status[]>> GetStatuses(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -155,7 +155,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/issueTypes")]
-        public async Task<IssueType[]> GetIssueTypes(
+        public async Task<ActionResult<IssueType[]>> GetIssueTypes(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -172,7 +172,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/categories")]
-        public async Task<Category[]> GetCategories(
+        public async Task<ActionResult<Category[]>> GetCategories(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -189,7 +189,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey"></param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/customFields")]
-        public async Task<CustomField[]> GetCustomFields(
+        public async Task<ActionResult<CustomField[]>> GetCustomFields(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -207,7 +207,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="excludeGroupMembers">グループを介してプロジェクトに参加しているメンバーを除く</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/users")]
-        public async Task<User[]> GetUsers(
+        public async Task<ActionResult<User[]>> GetUsers(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey,
@@ -225,7 +225,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/versions")]
-        public async Task<BacklogVersion[]> GetVersions(
+        public async Task<ActionResult<BacklogVersion[]>> GetVersions(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -242,7 +242,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/webhooks")]
-        public async Task<Webhook[]> GetWebhooks(
+        public async Task<ActionResult<Webhook[]>> GetWebhooks(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -260,7 +260,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="webhookId">処理対象のWebhookのId</param>
         /// <returns></returns>
         [Route("{projectIdOrKey}/webhooks/{webhookId}")]
-        public async Task<Webhook> GetWebhook(
+        public async Task<ActionResult<Webhook>> GetWebhook(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey,
@@ -278,7 +278,7 @@ namespace BacklogApiBridge.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("{projectIdOrKey}/webhooks/{webhookId}")]
-        public async Task<Webhook> CreateWebhook(
+        public async Task<ActionResult<Webhook>> CreateWebhook(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey
@@ -296,7 +296,7 @@ namespace BacklogApiBridge.Controllers
         /// <returns></returns>
         [HttpPatch]
         [Route("{projectIdOrKey}/webhooks/{webhookId}")]
-        public async Task<Webhook> UpdateWebhook(
+        public async Task<ActionResult<Webhook>> UpdateWebhook(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey,
@@ -315,7 +315,7 @@ namespace BacklogApiBridge.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route("{projectIdOrKey}/webhooks/{webhookId}")]
-        public async Task<Webhook> DeleteWebhook(
+        public async Task<ActionResult<Webhook>> DeleteWebhook(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string projectIdOrKey,
@@ -324,5 +324,122 @@ namespace BacklogApiBridge.Controllers
             await _httpClientFactory
                 .CreateRestServiceClient<IBacklogClient>(spaceKey)
                 .DeleteWebhookAsync(apiKey, projectIdOrKey, webhookId);
+
+        /// <summary>
+        /// プロジェクトに紐づくGITリポジトリのPullRequestを作成します。
+        /// </summary>
+        /// <param name="apiKey">BacklogAPIを呼び出すためのAPIKey</param>
+        /// <param name="spaceKey">組織キー https://xxxx.backlog.jp/ のxxxの部分</param>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <param name="repoIdOrName"></param>
+        /// <param name="summary"></param>
+        /// <param name="description"></param>
+        /// <param name="base"></param>
+        /// <param name="branch"></param>
+        /// <param name="issueId"></param>
+        /// <param name="assigneeId"></param>
+        /// <param name="notifiedUserIds"></param>
+        /// <param name="attachmentIds"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests")]
+        public async Task<ActionResult<PullRequest>> CreatePullRequest(
+            [Required] string apiKey,
+            [Required] string spaceKey,
+            [Required] string projectIdOrKey,
+            [Required] string repoIdOrName,
+            [Required] string summary,
+            [Required] string description,
+            [Required] string @base,
+            [Required] string branch,
+            int? issueId,
+            int? assigneeId,
+            string notifiedUserIds = "[]",
+            string attachmentIds = "[]"
+        ) =>
+            await _httpClientFactory
+                .CreateRestServiceClient<IBacklogClient>(spaceKey)
+                .CreatePullRequestAsync(
+                    apiKey,
+                    projectIdOrKey,
+                    repoIdOrName,
+                    summary,
+                    description,
+                    @base,
+                    branch,
+                    issueId,
+                    assigneeId,
+                    notifiedUserIds.FromJsonToIntArray(),
+                    attachmentIds.FromJsonToIntArray());
+
+        /// <summary>
+        /// プロジェクトに紐づくGITリポジトリのPullRequestを取得します。
+        /// </summary>
+        /// <param name="apiKey">BacklogAPIを呼び出すためのAPIKey</param>
+        /// <param name="spaceKey">組織キー https://xxxx.backlog.jp/ のxxxの部分</param>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <param name="repoIdOrName"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/{number}")]
+        public async Task<ActionResult<PullRequest>> GetPullRequest(
+            [Required] string apiKey,
+            [Required] string spaceKey,
+            [Required] string projectIdOrKey,
+            [Required] string repoIdOrName,
+            [Required] int number
+        ) =>
+            await _httpClientFactory
+                .CreateRestServiceClient<IBacklogClient>(spaceKey)
+                .GetPullRequestAsync(
+                    apiKey,
+                    projectIdOrKey,
+                    repoIdOrName,
+                    number);
+
+        /// <summary>
+        /// プロジェクトに紐づくGITリポジトリのPullRequestを削除します。
+        /// </summary>
+        /// <param name="apiKey">BacklogAPIを呼び出すためのAPIKey</param>
+        /// <param name="spaceKey">組織キー https://xxxx.backlog.jp/ のxxxの部分</param>
+        /// <param name="projectIdOrKey">プロジェクトのID または プロジェクトキー</param>
+        /// <param name="repoIdOrName"></param>
+        /// <param name="number"></param>
+        /// <param name="summary"></param>
+        /// <param name="description"></param>
+        /// <param name="issueId"></param>
+        /// <param name="assigneeId"></param>
+        /// <param name="notifiedUserIds"></param>
+        /// <param name="comments"></param>
+        /// <returns></returns>
+        [HttpPatch]
+        [Route("{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/{number}")]
+        public async Task<ActionResult<PullRequest>> DeletePullRequest(
+            [Required] string apiKey,
+            [Required] string spaceKey,
+            [Required] string projectIdOrKey,
+            [Required] string repoIdOrName,
+            [Required] int number,
+            [Required] string summary,
+            [Required] string description,
+            int? issueId,
+            int? assigneeId,
+            string notifiedUserIds = "[]",
+            string comments = null
+        ) =>
+            await _httpClientFactory
+                .CreateRestServiceClient<IBacklogClient>(spaceKey)
+                .UpdatePullRequestAsync(
+                    apiKey,
+                    projectIdOrKey,
+                    repoIdOrName,
+                    number,
+                    summary,
+                    description,
+                    issueId,
+                    assigneeId,
+                    notifiedUserIds.FromJsonToIntArray(),
+                    comments);
     }
 }
