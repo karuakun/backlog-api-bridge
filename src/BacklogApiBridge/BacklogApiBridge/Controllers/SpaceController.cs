@@ -38,7 +38,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="apiKey"></param>
         /// <param name="spaceKey"></param>
         /// <returns></returns>
-        public async Task<Space> Space(string apiKey, string spaceKey) =>
+        public async Task<ActionResult<Space>> Space(string apiKey, string spaceKey) =>
             await _httpClientFactory.CreateRestServiceClient<IBacklogClient>(spaceKey).GetSpaceAsync(apiKey);
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="order">ascまたはdesc指定が無い場合はdesc</param>
         /// <returns></returns>
         [Route("Activities")]
-        public async Task<Activity[]> GetActivities(
+        public async Task<ActionResult<Activity[]>> GetActivities(
             [Required] string apiKey,
             [Required] string spaceKey,
             string activityTypeIds,

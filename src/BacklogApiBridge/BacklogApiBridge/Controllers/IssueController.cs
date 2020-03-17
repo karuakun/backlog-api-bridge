@@ -67,7 +67,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="parentIssueIds">親課題のID</param>
         /// <param name="keyWord">検索キーワード</param>
         /// <returns></returns>
-        public async Task<Issue[]> FindByAsync(
+        public async Task<ActionResult<Issue[]>> FindByAsync(
             [Required] string apiKey,
             [Required] string spaceKey,
             string projectIds = "[]",
@@ -158,13 +158,14 @@ namespace BacklogApiBridge.Controllers
         /// <param name="issueIdOrKey">課題のID または 課題キー</param>
         /// <returns></returns>
         [Route("{issueIdOrKey}/lastStatusChange")]
-        public async Task<StatusChange> GetLastStatusChangeLog(
+        public async Task<ActionResult<StatusChange>> GetLastStatusChangeLog(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string issueIdOrKey)
         {
             var comments = await GetComments(apiKey, spaceKey, issueIdOrKey);
             return comments
+                .Value
                 .Select(c =>
                 {
                     var status = c.ChangeLog.FirstOrDefault(l => l.Field == "status") ?? new ChangeLog();
@@ -191,7 +192,7 @@ namespace BacklogApiBridge.Controllers
         /// <param name="order">"asc"または"desc"指定が無い場合は"desc"</param>
         /// <returns></returns>
         [Route("{issueIdOrKey}/comments")]
-        public async Task<Comment[]> GetComments(
+        public async Task<ActionResult<Comment[]>> GetComments(
             [Required] string apiKey,
             [Required] string spaceKey,
             [Required] string issueIdOrKey,
